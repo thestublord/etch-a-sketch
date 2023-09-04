@@ -10,3 +10,7 @@
     border: 1px solid #000;
     box-sizing: border-box;
   }
+
+  .grid-item:hover {
+    background-color: blue;
+  }

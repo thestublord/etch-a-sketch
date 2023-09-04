@@ -14,7 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
       div.classList.add('grid-item');
       container.appendChild(div);
       
-      if (i % 16 === 0) { // Log a message every 16 iterations
+      div.addEventListener('mouseover', () => {
+        div.style.backgroundColor = 'blue';
+      });
+  
+      if (i % 16 === 0) {
         console.log(`Created ${i} grid items so far`);
       }
     }
