@@ -1,34 +1,26 @@
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', (event) => {
+    createGrid(16);
+});
+
+function createGrid(size) {
     const container = document.getElementById('container');
-    const resetButton = document.getElementById('reset-button');
-  
-    function createGrid(size) {
-      container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
-      container.style.gridTemplateRows = `repeat(${size}, 1fr)`;
-  
-      container.innerHTML = ''; // Remove old grid
-  
-      for (let i = 0; i < size * size; i++) {
-        const div = document.createElement('div');
-        div.classList.add('grid-item');
-        container.appendChild(div);
-  
-        div.addEventListener('mouseover', () => {
-          div.style.backgroundColor = 'blue';
-        });
-      }
+    container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+    container.innerHTML = ''; // Clear the container before generating new grid
+
+    for (let i = 0; i < size * size; i++) {
+        const square = document.createElement('div');
+        square.classList.add('square');
+        container.appendChild(square);
     }
-  
-    if (resetButton) {
-      resetButton.addEventListener('click', () => {
-        let size = parseInt(prompt('Enter the number of squares per side (max 100):'));
-        if (size > 100) {
-          alert('Size too large! Setting to maximum size of 100.');
-          size = 100;
-        }
-        createGrid(size);
-      });
+}
+
+function changeGridSize() {
+    let newSize = prompt("Enter new grid size (max 100):", "16");
+
+    if (newSize > 100) {
+        alert("Max grid size is 100.");
+        return;
     }
-  
-    createGrid(16); // Create the initial 16x16 grid
-  });
+
+    createGrid(newSize);
+}

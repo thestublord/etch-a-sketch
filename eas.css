@@ -1,14 +1,23 @@
-#container {
-    display: grid;
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  #container {
+    display: flex;
+    flex-wrap: wrap;
     width: 960px;
-    margin: 0 auto;
   }
   
-  .grid-item {
+  .square {
+    width: 60px; /* 960 / 16 */
+    height: 60px;
+    box-sizing: border-box;
     border: 1px solid #ccc;
-    transition: background-color 0.3s;
   }
   
-  .grid-item:hover {
+  .square:hover {
     background-color: blue;
   }
