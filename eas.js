@@ -1,27 +1,34 @@
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM fully loaded and parsed');
-    
     const container = document.getElementById('container');
+    const resetButton = document.getElementById('reset-button');
   
-    if (container) {
-      console.log('Container element found');
-    } else {
-      console.log('Container element not found');
-    }
+    function createGrid(size) {
+      container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+      container.style.gridTemplateRows = `repeat(${size}, 1fr)`;
   
-    for(let i = 0; i < 256; i++) {
-      const div = document.createElement('div');
-      div.classList.add('grid-item');
-      container.appendChild(div);
-      
-      div.addEventListener('mouseover', () => {
-        div.style.backgroundColor = 'blue';
-      });
+      container.innerHTML = ''; // Remove old grid
   
-      if (i % 16 === 0) {
-        console.log(`Created ${i} grid items so far`);
+      for (let i = 0; i < size * size; i++) {
+        const div = document.createElement('div');
+        div.classList.add('grid-item');
+        container.appendChild(div);
+  
+        div.addEventListener('mouseover', () => {
+          div.style.backgroundColor = 'blue';
+        });
       }
     }
   
-    console.log('Grid creation complete');
+    if (resetButton) {
+      resetButton.addEventListener('click', () => {
+        let size = parseInt(prompt('Enter the number of squares per side (max 100):'));
+        if (size > 100) {
+          alert('Size too large! Setting to maximum size of 100.');
+          size = 100;
+        }
+        createGrid(size);
+      });
+    }
+  
+    createGrid(16); // Create the initial 16x16 grid
   });
